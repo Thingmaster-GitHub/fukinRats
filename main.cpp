@@ -563,7 +563,7 @@ private:
         }else if(rat.action=="searchingFood"){
             if(foundFile){
                 biteFile(filePath);
-                rat.hungerVal++;
+                rat.hungerVal+=10;
             }
         }
     }
