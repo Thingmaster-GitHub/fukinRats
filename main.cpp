@@ -690,7 +690,7 @@ private:
     bool QeddibleFile(std::string filePath,int fileSize){
         //checks if file is a rat
         for(int i=0;i<allTheRats.size();i++){
-            if(allTheRats[i].path+allTheRats[i].name+".jpg"==filePath){
+            if(filePath.find(allTheRats[i].name+".jpg")!= std::string::npos){
                 return false;
             }
         }
