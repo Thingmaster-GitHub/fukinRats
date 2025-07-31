@@ -113,7 +113,7 @@ private:
     }
     void mainLoop(){
         //will run forever in final program
-        for(int o=0;o<100;o++){
+        while(true){
             for(int i=0;i<allTheRats.size();i++){
                 ratBehavior(allTheRats[i]);
 
