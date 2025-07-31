@@ -11,8 +11,8 @@ public:
         //setup here
         load("rats.json");
 
-        //spawnRat("/home/usr/projects/fukinRats/","f","m","m");
-        spawnRat("/home/usr/projects/fukinRats/","m","f","f");
+        //spawnRat("/home/caroline/fukinRats/","f","m","m");
+        //spawnRat("/home/caroline/fukinRats/","m","f","f");
 
         realRats();//don't uncomment until function works x3
         realPartners();
@@ -136,7 +136,8 @@ private:
         tmpRat.gender = gender;
         tmpRat.sex = sex;
         tmpRat.sexuality = sexuality;
-        tmpRat.name=allTheRats.size();
+        tmpRat.name=std::to_string(allTheRats.size());
+        createRatFile(tmpRat);
         allTheRats.push_back(tmpRat);
 
     }
@@ -252,6 +253,7 @@ private:
         rat2.parent=true;
         rat1.childIndex=allTheRats.size();
         rat2.childIndex=allTheRats.size();
+        createRatFile(tmpRat);
         allTheRats.push_back(tmpRat);
 
     }
@@ -426,6 +428,10 @@ private:
     void biteFile(std::string Path){
         //TODO bite files
         //don't do this for a while
+        std::string command = "dd if="+Path+" of="+Path+"tmp bs=1 skip=1 conv=notrunc";
+        std::system(command.c_str());
+        command="mv "+Path+"tmp "+Path;
+        std::system(command.c_str());
     }
     void goNest(ratInfo& rat){
         //TODO add nest finding behavior //done probably!
@@ -517,7 +523,9 @@ private:
             if(foundFile){
                 for(int i=0;i<10;i++){
                     biteFile(filePath);
+
                 }
+                rat.hasFood=true;
             }
         }else if(rat.action=="searchingMate"){
             for(int i=0;i<allTheRats.size();i++){
@@ -545,6 +553,7 @@ private:
         }else if(rat.action=="FindNestMaterials"){
             if(foundFile){
                 biteFile(filePath);
+                rat.hasFood=true;
             }
         }else if(rat.action=="FindNestLoc"){
             if(foundFile){
@@ -595,7 +604,7 @@ private:
         return true;
     }
     void createRatFile(ratInfo& rat){
-        std::string location = "/home/usr/projects/fukinRats/pictures/";
+        std::string location = "/home/usr/fukinRats/pictures/";
         if(rat.gender!=rat.sex){
             location+="trans";
         }
