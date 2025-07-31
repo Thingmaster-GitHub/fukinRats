@@ -460,7 +460,7 @@ private:
         }else if(rat.action=="foodToNest"){
             if(rat.path==rat.nestPath){
                 rat.nestFood+=10;
-                rat.nestFood=false;
+                rat.hasFood=false;
             }
         }else if(rat.action=="wait"){
             //don't do anything x3
