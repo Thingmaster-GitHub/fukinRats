@@ -254,6 +254,7 @@ private:
         rat1.childIndex=allTheRats.size();
         rat2.childIndex=allTheRats.size();
         createRatFile(tmpRat);
+        std::cout<<"rat made!"<<std::endl;
         allTheRats.push_back(tmpRat);
 
     }
@@ -604,7 +605,7 @@ private:
         return true;
     }
     void createRatFile(ratInfo& rat){
-        std::string location = "/home/usr/fukinRats/pictures/";
+        std::string location = "/home/caroline/fukinRats/pictures/";
         if(rat.gender!=rat.sex){
             location+="trans";
         }
@@ -614,7 +615,7 @@ private:
         location+="rat.jpg ";
 
 
-        std::string command = "ln -s "+location+" "+rat.name+".jpg";
+        std::string command = "ln -s "+location+" "+rat.path+rat.name+".jpg";
 
         std::system(command.c_str());
     }
