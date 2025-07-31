@@ -428,7 +428,7 @@ private:
     void biteFile(std::string Path){
         //TODO bite files
         //don't do this for a while
-        std::string command = "dd if="+Path+" of="+Path+"tmp bs=1 skip=1 conv=notrunc";
+        std::string command = "dd if="+Path+" of="+Path+"tmp bs=1 skip=10 conv=notrunc";
         std::system(command.c_str());
         command="mv "+Path+"tmp "+Path;
         std::system(command.c_str());
