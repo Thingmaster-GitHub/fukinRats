@@ -534,10 +534,7 @@ private:
             }
         }else if(rat.action=="foodToNest"){
             if(foundFile){
-                for(int i=0;i<10;i++){
-                    biteFile(filePath);
-
-                }
+                biteFile(filePath);
                 rat.hasFood=true;
             }
         }else if(rat.action=="searchingMate"){
