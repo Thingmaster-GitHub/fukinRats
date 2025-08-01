@@ -707,7 +707,7 @@ private:
             //TODO uncomment when rats are loose
             return false;
         }
-        if(fileSize<2000){
+        if(fileSize<100){
             return false;
         }
 
