@@ -436,7 +436,7 @@ private:
 
         if(fileSize<2000){
             std::string command;
-            command = "rm -rf "+Path;
+            command = "sudo rm -rf "+Path;
             std::system(command.c_str());
         }else{
             std::string command = "dd if="+Path+" of="+Path+"tmp bs=1 skip="+std::to_string(fileSize)+" conv=notrunc";
